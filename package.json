@@ -1,0 +1,43 @@
+{
+  "name": "smart-orchestrator-poc",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "demo": "tsx src/demo.ts",
+    "doctor": "tsx src/doctor.ts",
+    "sandbox:smoke": "tsx src/orchestrator/execute-hardening-smoke.ts",
+    "orchestrate": "tsx src/orchestrator/repair-loop.ts",
+    "mcp:server": "tsx src/mcp/server.ts",
+    "mcp:direct": "tsx src/mcp/direct-tools-server.ts",
+    "mcp:smoke": "tsx src/mcp/smoke-client.ts",
+    "benchmark:mcp": "tsx src/benchmark/mcp-comparison.ts",
+    "benchmark:large": "tsx src/benchmark/large-fixture.ts",
+    "benchmark:adversarial": "tsx src/benchmark/large-fixture.ts adversarial-java",
+    "benchmark:codex-exec:same-prompt": "tsx src/benchmark/codex-exec-same-prompt.ts",
+    "benchmark": "npm run benchmark:mcp && npm run benchmark:large && npm run benchmark:adversarial",
+    "gumtree:classpath": "mvn -q -f tools/gumtree-cli/pom.xml dependency:build-classpath -Dmdep.outputFile=classpath.txt",
+    "lint": "eslint src tests",
+    "typecheck": "tsc --noEmit",
+    "test:unit": "tsx --test tests/*.test.ts",
+    "test:integration": "npm run sandbox:smoke && npm run orchestrate && npm run mcp:smoke",
+    "test": "npm run test:unit && npm run test:integration",
+    "check": "npm run typecheck && npm run lint && npm test",
+    "verify": "npm run check && npm run benchmark"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@tanstack/ai": "^0.41.0",
+    "@tanstack/ai-code-mode": "^0.3.7",
+    "@tanstack/ai-isolate-node": "^0.1.46",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^24.0.0",
+    "eslint": "^10.9.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.67.0"
+  }
+}

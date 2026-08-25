@@ -1,0 +1,65 @@
+{
+  "id": "adversarial-java",
+  "scenario": "Multiline calls, nested arguments, literals, comments, static receivers, wildcard imports, and cross-package shadowing",
+  "libraryPairs": [
+    {
+      "oldFile": "fixtures/adversarial-java/v1/library/client/ApiClient.java",
+      "newFile": "fixtures/adversarial-java/v2/library/client/ApiClient.java"
+    }
+  ],
+  "appRoot": "fixtures/adversarial-java/app",
+  "expected": {
+    "changedMethods": [
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.client.ApiClient: java.lang.String fetch(java.lang.String)>",
+        "newSymbol": "<library.client.ApiClient: java.lang.String fetch(java.lang.String,boolean)>"
+      },
+      {
+        "changeType": "method_removed",
+        "oldSymbol": "<library.client.ApiClient: void send(java.lang.String,java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.client.ApiClient: java.lang.String normalize(java.lang.String)>",
+        "newSymbol": "<library.client.ApiClient: java.lang.String normalize(java.lang.String,java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.client.ApiClient: boolean ping()>"
+      }
+    ],
+    "affectedCallSites": [
+      {
+        "file": "fixtures/adversarial-java/app/application/EdgeCases.java",
+        "line": 10,
+        "matchedSymbol": "<library.client.ApiClient: java.lang.String fetch(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/adversarial-java/app/application/EdgeCases.java",
+        "line": 16,
+        "matchedSymbol": "<library.client.ApiClient: void send(java.lang.String,java.lang.String)>"
+      },
+      {
+        "file": "fixtures/adversarial-java/app/application/EdgeCases.java",
+        "line": 20,
+        "matchedSymbol": "<library.client.ApiClient: java.lang.String normalize(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/adversarial-java/app/application/ScopedReceivers.java",
+        "line": 14,
+        "matchedSymbol": "<library.client.ApiClient: java.lang.String fetch(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/adversarial-java/app/application/WildcardStatic.java",
+        "line": 7,
+        "matchedSymbol": "<library.client.ApiClient: java.lang.String normalize(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/adversarial-java/app/application/VarReceiver.java",
+        "line": 8,
+        "matchedSymbol": "<library.client.ApiClient: java.lang.String fetch(java.lang.String)>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+DIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ ! -f "$DIR/classpath.txt" ]]; then
+  mvn -q -f "$DIR/pom.xml" dependency:build-classpath -Dmdep.outputFile=classpath.txt >/dev/null
+fi
+
+CP="$(cat "$DIR/classpath.txt")"
+# tree-sitter native libs need unrestricted native access on JDK 22+
+exec java --enable-native-access=ALL-UNNAMED -cp "$CP" com.github.gumtreediff.client.Run "$@"

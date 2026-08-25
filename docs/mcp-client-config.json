@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "smart-orchestrator-poc": {
+      "command": "/home/flybyflo/Developer/smart-orchestrator-poc/node_modules/.bin/tsx",
+      "args": [
+        "/home/flybyflo/Developer/smart-orchestrator-poc/src/mcp/server.ts"
+      ],
+      "cwd": "/home/flybyflo/Developer/smart-orchestrator-poc"
+    }
+  }
+}

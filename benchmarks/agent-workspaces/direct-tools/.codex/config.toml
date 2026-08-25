@@ -1,0 +1,10 @@
+approval_policy = "never"
+sandbox_mode = "read-only"
+
+[mcp_servers.smart_orchestrator_direct_tools]
+command = "/home/flybyflo/Developer/smart-orchestrator-poc/node_modules/.bin/tsx"
+args = ["/home/flybyflo/Developer/smart-orchestrator-poc/src/mcp/direct-tools-server.ts"]
+cwd = "/home/flybyflo/Developer/smart-orchestrator-poc"
+enabled = true
+startup_timeout_sec = 300
+tool_timeout_sec = 300

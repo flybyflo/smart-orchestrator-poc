@@ -1,0 +1,136 @@
+{
+  "id": "order-platform-large",
+  "scenario": "Multi-package order platform dependency upgrade",
+  "libraryPairs": [
+    {
+      "oldFile": "fixtures/order-platform-large/v1/library/billing/BillingClient.java",
+      "newFile": "fixtures/order-platform-large/v2/library/billing/BillingClient.java"
+    },
+    {
+      "oldFile": "fixtures/order-platform-large/v1/library/catalog/CatalogClient.java",
+      "newFile": "fixtures/order-platform-large/v2/library/catalog/CatalogClient.java"
+    },
+    {
+      "oldFile": "fixtures/order-platform-large/v1/library/shipping/ShippingClient.java",
+      "newFile": "fixtures/order-platform-large/v2/library/shipping/ShippingClient.java"
+    }
+  ],
+  "appRoot": "fixtures/order-platform-large/app",
+  "expected": {
+    "changedMethods": [
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.billing.BillingClient: java.lang.String authorize(java.lang.String,int)>",
+        "newSymbol": "<library.billing.BillingClient: java.lang.String authorize(java.lang.String,int,java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.billing.BillingClient: java.lang.String capture(java.lang.String)>",
+        "newSymbol": "<library.billing.BillingClient: java.lang.String capture(java.lang.String,boolean)>"
+      },
+      {
+        "changeType": "method_removed",
+        "oldSymbol": "<library.billing.BillingClient: void refund(java.lang.String,int)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.billing.BillingClient: void voidPayment(java.lang.String,java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.billing.BillingClient: java.lang.String paymentStatus(java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.catalog.CatalogClient: java.lang.String priceForSku(java.lang.String)>",
+        "newSymbol": "<library.catalog.CatalogClient: java.lang.String priceForSku(java.lang.String,java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.catalog.CatalogClient: boolean reserveInventory(java.lang.String,int)>",
+        "newSymbol": "<library.catalog.CatalogClient: java.lang.String reserveInventory(java.lang.String,int,java.lang.String)>"
+      },
+      {
+        "changeType": "method_removed",
+        "oldSymbol": "<library.catalog.CatalogClient: void releaseInventory(java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.catalog.CatalogClient: boolean releaseReservation(java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.catalog.CatalogClient: boolean isAvailable(java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.shipping.ShippingClient: java.lang.String quote(java.lang.String,int)>",
+        "newSymbol": "<library.shipping.ShippingClient: java.lang.String quote(java.lang.String,int,java.lang.String)>"
+      },
+      {
+        "changeType": "method_signature_changed",
+        "oldSymbol": "<library.shipping.ShippingClient: java.lang.String createLabel(java.lang.String)>",
+        "newSymbol": "<library.shipping.ShippingClient: java.lang.String createLabel(java.lang.String,boolean)>"
+      },
+      {
+        "changeType": "method_removed",
+        "oldSymbol": "<library.shipping.ShippingClient: void cancelLabel(java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.shipping.ShippingClient: boolean cancelShipment(java.lang.String,java.lang.String)>"
+      },
+      {
+        "changeType": "method_added",
+        "newSymbol": "<library.shipping.ShippingClient: java.lang.String track(java.lang.String)>"
+      }
+    ],
+    "affectedCallSites": [
+      {
+        "file": "fixtures/order-platform-large/app/application/CheckoutService.java",
+        "line": 13,
+        "matchedSymbol": "<library.catalog.CatalogClient: java.lang.String priceForSku(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/CheckoutService.java",
+        "line": 14,
+        "matchedSymbol": "<library.catalog.CatalogClient: boolean reserveInventory(java.lang.String,int)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/CheckoutService.java",
+        "line": 15,
+        "matchedSymbol": "<library.billing.BillingClient: java.lang.String authorize(java.lang.String,int)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/CheckoutService.java",
+        "line": 16,
+        "matchedSymbol": "<library.shipping.ShippingClient: java.lang.String quote(java.lang.String,int)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/FulfillmentJob.java",
+        "line": 11,
+        "matchedSymbol": "<library.billing.BillingClient: java.lang.String capture(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/FulfillmentJob.java",
+        "line": 12,
+        "matchedSymbol": "<library.shipping.ShippingClient: java.lang.String createLabel(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/SupportConsole.java",
+        "line": 13,
+        "matchedSymbol": "<library.billing.BillingClient: void refund(java.lang.String,int)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/SupportConsole.java",
+        "line": 14,
+        "matchedSymbol": "<library.catalog.CatalogClient: void releaseInventory(java.lang.String)>"
+      },
+      {
+        "file": "fixtures/order-platform-large/app/application/SupportConsole.java",
+        "line": 15,
+        "matchedSymbol": "<library.shipping.ShippingClient: void cancelLabel(java.lang.String)>"
+      }
+    ]
+  }
+}

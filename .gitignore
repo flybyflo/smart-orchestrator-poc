@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Build and test artifacts
+dist/
+coverage/
+*.tsbuildinfo
+
+# Generated benchmark and tool output
+outputs/
+tools/gumtree-cli/classpath.txt
+
+# Local environment and credentials
+.env
+.env.*
+!.env.example
+.npmrc
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor and OS metadata
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Tool caches and temporary files
+.cache/
+.tmp/
+tmp/
+.eslintcache
